@@ -1,7 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<resources>
-    <string name="app_name">samgungcnt</string>
-    <string name="title_activity_main">samgungcnt</string>
-    <string name="package_name">com.example.vue3app</string>
-    <string name="custom_url_scheme">com.example.vue3app</string>
-</resources>
