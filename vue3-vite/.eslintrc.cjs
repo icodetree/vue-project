@@ -11,6 +11,7 @@ module.exports = {
   env: {
     'vue/setup-compiler-macros': true,
   },
+  // 추가 설정
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
