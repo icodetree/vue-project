@@ -1,3 +1,5 @@
+<script setup></script>
+
 <template>
   <header>
     <nav class="navbar navbar-expand-lg bg-primary navbar-dark">
@@ -17,12 +19,14 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/"
-                >FUNCODING</a
+              <RouterLink class="nav-link" active-class="active" to="/"
+                >FUNCODING</RouterLink
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/about">ABOUT</a>
+              <RouterLink class="nav-link" active-class="active" to="/about"
+                >ABOUT</RouterLink
+              >
             </li>
           </ul>
           <form class="d-flex" role="search">
