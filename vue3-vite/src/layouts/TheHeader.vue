@@ -33,11 +33,7 @@
             </li>
           </ul>
           <div class="d-flex">
-            <button
-              class="btn btn-outline-success"
-              type="button"
-              @click="goPage"
-            >
+            <button class="btn btn-outline-light" type="button" @click="goPage">
               글쓰기
             </button>
           </div>
