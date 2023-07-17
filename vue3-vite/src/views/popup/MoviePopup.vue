@@ -1,49 +1,57 @@
 <template>
   <div>
-    <button @click="openPopup">Open Popup</button>
-    <div v-if="showPopup" class="popup">
-      <video ref="videoRef" :src="videoSrc" @ended="playVideo"></video>
+    <button @click="openPopup">팝업 열기</button>
+    <div v-if="isPopupOpen" class="popup">
+      <video ref="videoPlayer" autoplay loop>
+        <source src="@/assets/movie.mp4" type="video/mp4" />
+      </video>
+      <button class="btn-close" @click="closePopup">X</button>
     </div>
   </div>
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 
 export default {
   setup() {
-    const showPopup = ref(false);
-    const videoSrc = ref('path/to/video.mp4');
-    const videoRef = ref(null);
+    const isPopupOpen = ref(false);
+    let videoPlayer;
 
     const openPopup = () => {
-      showPopup.value = true;
-      playVideo();
+      isPopupOpen.value = true;
     };
 
-    const playVideo = () => {
-      videoRef.value.play();
+    const closePopup = () => {
+      isPopupOpen.value = false;
+      videoPlayer.pause();
     };
+
+    onMounted(() => {
+      videoPlayer = document.querySelector('.popup video');
+    });
+
+    onBeforeUnmount(() => {
+      videoPlayer.pause();
+    });
 
     return {
-      showPopup,
-      videoSrc,
-      videoRef,
+      isPopupOpen,
       openPopup,
-      playVideo,
+      closePopup,
     };
   },
 };
 </script>
 
-<style>
+<style scoped>
 .popup {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.8);
+  height: 100%;
+  background-color: rgba(0, 0, 0, 1);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -51,7 +59,13 @@ export default {
 
 .popup video {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: 100vh;
+}
+.btn-close {
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  z-index: 1;
+  color: #fff;
 }
 </style>

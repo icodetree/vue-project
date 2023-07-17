@@ -7,6 +7,7 @@ import PostCreateView from '@/views/posts/PostCreateView.vue';
 import PosDetailView from '@/views/posts/PosDetailView.vue';
 import PostEditView from '@/views/posts/PostEditView.vue';
 import PostListView from '@/views/posts/PostListView.vue';
+import MoviePopup from '@/views/popup/MoviePopup.vue';
 
 const routes = [
   {
@@ -34,6 +35,10 @@ const routes = [
   {
     path: '/posts/:id/edit',
     component: PostEditView,
+  },
+  {
+    path: '/movie',
+    component: MoviePopup,
   },
 ];
 const router = createRouter({
