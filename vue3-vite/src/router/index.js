@@ -12,32 +12,37 @@ import MoviePopup from '@/views/popup/MoviePopup.vue';
 const routes = [
   {
     path: '/',
-    name: 'home',
+    name: 'Home',
     component: HomeView,
   },
   {
     path: '/about',
-    name: 'about',
+    name: 'About',
     component: AboutView,
   },
   {
     path: '/posts',
+    name: 'PostList',
     component: PostListView,
   },
   {
     path: '/posts/create',
+    name: 'PostCreate',
     component: PostCreateView,
   },
   {
     path: '/posts/:id',
+    name: 'PostDetail',
     component: PosDetailView,
   },
   {
     path: '/posts/:id/edit',
+    name: 'PostEdit',
     component: PostEditView,
   },
   {
     path: '/movie',
+    name: 'Movie',
     component: MoviePopup,
   },
 ];
