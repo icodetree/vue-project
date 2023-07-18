@@ -30,12 +30,12 @@
   </div>
 </template>
 <script setup>
-import { userRoute, useRouter } from 'vue-router';
+// import { userRoute, useRouter } from 'vue-router';
 
-const route = userRoute();
-const router = useRouter();
-const id = route.params.id;
+// const route = userRoute();
+// const router = useRouter();
+// const id = route.params.id;
 
-const goListPage = () => router.push({ name: 'PostList' });
-const goEditPage = () => router.push({ name: 'PostEdit', params: { id } });
+// const goListPage = () => router.push({ name: 'PostList' });
+// const goEditPage = () => router.push({ name: 'PostEdit', params: { id } });
 </script>
