@@ -7,7 +7,8 @@ import PostCreateView from '@/views/posts/PostCreateView.vue';
 import PosDetailView from '@/views/posts/PosDetailView.vue';
 import PostEditView from '@/views/posts/PostEditView.vue';
 import PostListView from '@/views/posts/PostListView.vue';
-import MoviePopup from '@/views/popup/MoviePopup.vue';
+import BemeoPopup from '@/views/popup/BemeoPopup.vue';
+import YoutubePopup from '@/views/popup/YoutubePopup.vue';
 
 const routes = [
   {
@@ -41,9 +42,14 @@ const routes = [
     component: PostEditView,
   },
   {
-    path: '/movie',
-    name: 'Movie',
-    component: MoviePopup,
+    path: '/bemeo',
+    name: 'bemeo',
+    component: BemeoPopup,
+  },
+  {
+    path: '/youtube',
+    name: 'youtube',
+    component: YoutubePopup,
   },
 ];
 const router = createRouter({
