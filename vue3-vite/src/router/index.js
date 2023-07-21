@@ -7,8 +7,9 @@ import PostCreateView from '@/views/posts/PostCreateView.vue';
 import PosDetailView from '@/views/posts/PosDetailView.vue';
 import PostEditView from '@/views/posts/PostEditView.vue';
 import PostListView from '@/views/posts/PostListView.vue';
-import BemeoPopup from '@/views/popup/BemeoPopup.vue';
+import VimeoPopup from '@/views/popup/VimeoPopup.vue';
 import YoutubePopup from '@/views/popup/YoutubePopup.vue';
+import NotFoundView from '@/views/NotFoundView.vue';
 
 const routes = [
   {
@@ -42,14 +43,19 @@ const routes = [
     component: PostEditView,
   },
   {
-    path: '/bemeo',
-    name: 'bemeo',
-    component: BemeoPopup,
+    path: '/vimeo',
+    name: 'Vimeo',
+    component: VimeoPopup,
   },
   {
     path: '/youtube',
-    name: 'youtube',
+    name: 'Youtube',
     component: YoutubePopup,
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'Not Found',
+    component: NotFoundView,
   },
 ];
 const router = createRouter({
