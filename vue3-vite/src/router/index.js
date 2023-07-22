@@ -10,6 +10,7 @@ import PostListView from '@/views/posts/PostListView.vue';
 import VimeoPopup from '@/views/popup/VimeoPopup.vue';
 import YoutubePopup from '@/views/popup/YoutubePopup.vue';
 import NotFoundView from '@/views/NotFoundView.vue';
+import NestedView from '@/views/nested/NestedView.vue';
 
 const routes = [
   {
@@ -56,6 +57,11 @@ const routes = [
     path: '/:pathMatch(.*)*',
     name: 'Not Found',
     component: NotFoundView,
+  },
+  {
+    path: '/nested',
+    name: 'Nested',
+    component: NestedView,
   },
 ];
 const router = createRouter({
