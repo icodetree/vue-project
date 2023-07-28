@@ -29,23 +29,19 @@ export default {
       'https://www.youtube.com/embed/czKp1dg95bY?loop=1&autoplay=1&playlist=czKp1dg95bY&controls=0&mute=1',
     );
 
-    let videoPlayer;
-
     const openPopup = () => {
       isPopupOpen.value = true;
     };
 
     const closePopup = () => {
       isPopupOpen.value = false;
-      videoPlayer.pause();
+      // youtubeVideoPlayer.pause();
     };
 
-    onMounted(() => {
-      videoPlayer = document.querySelector('.popup video');
-    });
+    onMounted(() => {});
 
     onBeforeUnmount(() => {
-      videoPlayer.pause();
+      // youtubeVideoPlayer.pause();
     });
 
     return {

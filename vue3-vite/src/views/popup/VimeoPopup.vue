@@ -5,14 +5,14 @@
       <div class="video-wrapper">
         <iframe
           title="vimeo-player"
-          :src="videoUrl"
+          :src="vimeoVideoUrl"
           allow="autoplay"
           fullscreen
           frameborder="0"
           allowfullscreen
         ></iframe>
       </div>
-      <!-- <video ref="videoPlayer" autoplay loop>
+      <!-- <video ref="vimeoVideoPlayer" autoplay loop>
         <source src="@/assets/movie.mp4" type="video/mp4" />
       </video> -->
 
@@ -27,11 +27,9 @@ import { ref, onMounted, onBeforeUnmount } from 'vue';
 export default {
   setup() {
     const isPopupOpen = ref(false);
-    const videoUrl = ref(
+    const vimeoVideoUrl = ref(
       'https://player.vimeo.com/video/771851041?h=278fc31e7a&badge=0&autopause=0&player_id=0&app_id=58479&background=1',
     );
-
-    let videoPlayer;
 
     const openPopup = () => {
       isPopupOpen.value = true;
@@ -39,21 +37,19 @@ export default {
 
     const closePopup = () => {
       isPopupOpen.value = false;
-      videoPlayer.pause();
+      // vimeoVideoPlayer.pause();
     };
 
-    onMounted(() => {
-      videoPlayer = document.querySelector('.popup video');
-    });
+    onMounted(() => {});
 
     onBeforeUnmount(() => {
-      videoPlayer.pause();
+      // vimeoVideoPlayer.pause();
     });
 
     return {
       isPopupOpen,
       openPopup,
-      videoUrl,
+      vimeoVideoUrl,
       closePopup,
     };
   },
