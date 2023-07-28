@@ -30,12 +30,15 @@
   </div>
 </template>
 <script setup>
-// import { userRoute, useRouter } from 'vue-router';
+import { userRoute, useRouter } from 'vue-router';
+import { getPostById } from '@/api/posts';
 
-// const route = userRoute();
-// const router = useRouter();
-// const id = route.params.id;
+const route = userRoute();
+const router = useRouter();
+const id = route.params.id;
 
-// const goListPage = () => router.push({ name: 'PostList' });
-// const goEditPage = () => router.push({ name: 'PostEdit', params: { id } });
+console.log(getPostById(id));
+
+const goListPage = () => router.push({ name: 'PostList' });
+const goEditPage = () => router.push({ name: 'PostEdit', params: { id } });
 </script>
