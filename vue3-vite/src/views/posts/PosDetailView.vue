@@ -38,6 +38,15 @@ const route = useRoute();
 const router = useRouter();
 const id = route.params.id;
 const form = ref({});
+/**
+ * ref
+ * 장점 : 객체할당 가능
+ * 단점 : form.vlaue.title, form.value.content
+ *
+ * reactive
+ * 단점 : 객체 할당 불가능
+ * 장점 : form.title, form.content
+ * **/
 
 const fetchPost = () => {
   const data = getPostById(id);
