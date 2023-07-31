@@ -29,18 +29,21 @@
     <p>hash : {{ $route.hash }}</p> -->
   </div>
 </template>
+
 <script setup>
-import { useRoute, useRouter } from 'vue-router';
+import { useRouter } from 'vue-router';
 import { getPostById } from '@/api/posts';
 import { ref } from 'vue';
 
-const route = useRoute();
+const props = defineProps({
+  id: String,
+});
+
 const router = useRouter();
-const id = route.params.id;
-const form = ref({});
+// const id = route.params.id;
 /**
  * ref
- * 장점 : 객체할당 가능
+ * 장점 : 객체할당 가능, 일관성 유지
  * 단점 : form.vlaue.title, form.value.content
  *
  * reactive
@@ -48,12 +51,15 @@ const form = ref({});
  * 장점 : form.title, form.content
  * **/
 
+const form = ref({});
+
 const fetchPost = () => {
-  const data = getPostById(id);
+  const data = getPostById(props.id);
   form.value = { ...data };
 };
 fetchPost();
 
 const goListPage = () => router.push({ name: 'PostList' });
-const goEditPage = () => router.push({ name: 'PostEdit', params: { id } });
+const goEditPage = () =>
+  router.push({ name: 'PostEdit', params: { id: props.id } });
 </script>
