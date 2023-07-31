@@ -1,16 +1,19 @@
 // src/router/index.js
 import { createRouter, createWebHistory } from 'vue-router';
+
 import HomeView from '@/views/HomeView.vue';
 import AboutView from '@/views/AboutView.vue';
+import NotFoundView from '@/views/NotFoundView.vue';
+
+import NestedView from '@/views/nested/NestedView.vue';
+
+import VimeoPopup from '@/views/popup/VimeoPopup.vue';
+import YoutubePopup from '@/views/popup/YoutubePopup.vue';
 
 import PostCreateView from '@/views/posts/PostCreateView.vue';
 import PosDetailView from '@/views/posts/PosDetailView.vue';
 import PostEditView from '@/views/posts/PostEditView.vue';
 import PostListView from '@/views/posts/PostListView.vue';
-import VimeoPopup from '@/views/popup/VimeoPopup.vue';
-import YoutubePopup from '@/views/popup/YoutubePopup.vue';
-import NotFoundView from '@/views/NotFoundView.vue';
-import NestedView from '@/views/nested/NestedView.vue';
 
 const routes = [
   {
@@ -37,7 +40,11 @@ const routes = [
     path: '/posts/:id',
     name: 'PostDetail',
     component: PosDetailView,
-    props: true,
+    // props: true,
+
+    props: route => ({
+      id: parseInt(route.params.id),
+    }),
   },
   {
     path: '/posts/:id/edit',

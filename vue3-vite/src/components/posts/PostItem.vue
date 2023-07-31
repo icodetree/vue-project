@@ -3,7 +3,7 @@
     <div class="card-body">
       <h5 class="card-title">{{ title }}</h5>
       <p class="card-text">{{ content }}</p>
-      <p class="text-muted">{{ createAt }}</p>
+      <p class="text-muted">{{ createdAt }}</p>
     </div>
   </div>
 </template>
@@ -16,7 +16,7 @@ defineProps({
   content: {
     type: String,
   },
-  createAt: {
+  createdAt: {
     type: [String, Date, Number],
   },
 });
