@@ -11,9 +11,13 @@ import VimeoPopup from '@/views/popup/VimeoPopup.vue';
 import YoutubePopup from '@/views/popup/YoutubePopup.vue';
 
 import PostCreateView from '@/views/posts/PostCreateView.vue';
-import PosDetailView from '@/views/posts/PosDetailView.vue';
+import PostDetailView from '@/views/posts/PostDetailView.vue';
 import PostEditView from '@/views/posts/PostEditView.vue';
 import PostListView from '@/views/posts/PostListView.vue';
+
+import NestedOneView from '@/views/nested/NestedOneView.vue';
+import NestedTwoView from '@/views/nested/NestedTwoView.vue';
+import NestedHomeView from '@/views/nested/NestedHomeView.vue';
 
 const routes = [
   {
@@ -39,7 +43,7 @@ const routes = [
   {
     path: '/posts/:id',
     name: 'PostDetail',
-    component: PosDetailView,
+    component: PostDetailView,
     // props: true,
 
     props: route => ({
@@ -70,6 +74,23 @@ const routes = [
     path: '/nested',
     name: 'Nested',
     component: NestedView,
+    children: [
+      {
+        path: '',
+        name: 'NestedHome',
+        component: NestedHomeView,
+      },
+      {
+        path: 'one',
+        name: 'NestedOne',
+        component: NestedOneView,
+      },
+      {
+        path: 'two',
+        name: 'NestedTwo',
+        component: NestedTwoView,
+      },
+    ],
   },
 ];
 const router = createRouter({

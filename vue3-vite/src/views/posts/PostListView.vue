@@ -13,32 +13,22 @@
       </div>
     </div>
     <hr class="my-4" />
-    <PosDetailView :id="2"></PosDetailView>
+    <PostDetailView :id="2"></PostDetailView>
   </div>
 </template>
 <script setup>
+import PostItem from '@/components/posts/PostItem.vue';
+import PostDetailView from '@/views/posts/PostDetailView.vue';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { getPosts } from '@/api/posts';
 
-import PostItem from '@/components/posts/PostItem.vue';
-import PosDetailView from '@/views/posts/PosDetailView.vue';
-
-const router = useRouter;
+const router = useRouter();
 const posts = ref([]);
 
 const fetchPosts = () => {
   posts.value = getPosts();
 };
 fetchPosts();
-
-const goPage = id => {
-  // router.push(`/posts/${id}`);
-  router.push({
-    name: 'PostDetail',
-    params: {
-      id,
-    },
-  });
-};
+const goPage = id => router.push({ name: 'PostDetail', params: { id } });
 </script>
