@@ -5,8 +5,6 @@ import HomeView from '@/views/HomeView.vue';
 import AboutView from '@/views/AboutView.vue';
 import NotFoundView from '@/views/NotFoundView.vue';
 
-import NestedView from '@/views/nested/NestedView.vue';
-
 import VimeoPopup from '@/views/popup/VimeoPopup.vue';
 import YoutubePopup from '@/views/popup/YoutubePopup.vue';
 
@@ -15,6 +13,7 @@ import PostDetailView from '@/views/posts/PostDetailView.vue';
 import PostEditView from '@/views/posts/PostEditView.vue';
 import PostListView from '@/views/posts/PostListView.vue';
 
+import NestedView from '@/views/nested/NestedView.vue';
 import NestedOneView from '@/views/nested/NestedOneView.vue';
 import NestedTwoView from '@/views/nested/NestedTwoView.vue';
 import NestedHomeView from '@/views/nested/NestedHomeView.vue';
@@ -76,7 +75,7 @@ const routes = [
     component: NestedView,
     children: [
       {
-        path: '',
+        path: ' ',
         name: 'NestedHome',
         component: NestedHomeView,
       },
