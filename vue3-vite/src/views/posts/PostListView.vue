@@ -13,12 +13,15 @@
       </div>
     </div>
     <hr class="my-4" />
-    <PostDetailView :id="2"></PostDetailView>
+    <AppCard>
+      <PostDetailView :id="2"></PostDetailView>
+    </AppCard>
   </div>
 </template>
 <script setup>
 import PostItem from '@/components/posts/PostItem.vue';
 import PostDetailView from '@/views/posts/PostDetailView.vue';
+import AppCard from '@/components/AppCard.vue';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { getPosts } from '@/api/posts';
