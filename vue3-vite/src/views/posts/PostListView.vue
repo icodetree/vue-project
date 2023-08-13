@@ -44,6 +44,7 @@ import AppCard from '@/components/AppCard.vue';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { getPosts } from '@/api/posts';
+import { computed } from 'vue';
 
 const router = useRouter();
 const posts = ref([]);
@@ -55,11 +56,13 @@ const params = ref({
 
 //pagenation
 const totalCount = ref(0);
-
+const pageCount = computed(() => totalCount.value / params.value._limit);
 const fetchPosts = async () => {
   try {
     const { data, headers } = await getPosts(params.value);
     posts.value = data;
+    totalCount.value = headers['x-total-count'];
+    console.log('headers: ', pageCount.value);
   } catch (error) {
     console.error(error);
   }
