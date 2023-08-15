@@ -1,6 +1,25 @@
 <template>
   <div>
     <h2>게시글 목록</h2>
+    <form @submit.prevent>
+      <div class="row g-3">
+        <div class="col">
+          <input
+            type="text"
+            v-model="params.title_like"
+            name=""
+            class="form-control"
+          />
+        </div>
+        <div class="col-3">
+          <select v-model="params._limit" class="form-select">
+            <option value="3">3개씩 보기</option>
+            <option value="6">6개씩 보기</option>
+            <option value="9">9개씩 보기</option>
+          </select>
+        </div>
+      </div>
+    </form>
     <hr class="my-4" />
     <div class="row g-3">
       <div v-for="post in posts" :key="post.id" class="col-4">
@@ -15,16 +34,36 @@
 
     <nav class="mt-5" aria-label="Page navigation example">
       <ul class="pagination justify-content-center">
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Previous">
+        <li class="page-item" :class="{ disabled: !(params._page > 1) }">
+          <a
+            class="page-link"
+            href="#"
+            aria-label="Previous"
+            @click.prevent="--params._page"
+          >
             <span aria-hidden="true">&laquo;</span>
           </a>
         </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Next">
+        <li
+          v-for="page in pageCount"
+          :key="page"
+          class="page-item"
+          :class="{ active: params._page === page }"
+        >
+          <a class="page-link" href="#" @click.prevent="params._page = page">{{
+            page
+          }}</a>
+        </li>
+        <li
+          class="page-item"
+          :class="{ disabled: !(params._page < pageCount) }"
+        >
+          <a
+            class="page-link"
+            href="#"
+            aria-label="Next"
+            @click.prevent="++params._page"
+          >
             <span aria-hidden="true">&raquo;</span>
           </a>
         </li>
@@ -41,22 +80,25 @@
 import PostItem from '@/components/posts/PostItem.vue';
 import PostDetailView from '@/views/posts/PostDetailView.vue';
 import AppCard from '@/components/AppCard.vue';
-import { ref } from 'vue';
+import { ref, computed, watchEffect } from 'vue';
 import { useRouter } from 'vue-router';
 import { getPosts } from '@/api/posts';
-import { computed } from 'vue';
 
 const router = useRouter();
 const posts = ref([]);
 const params = ref({
   _sort: 'createdAt',
   _order: 'desc',
+  _page: 1,
   _limit: 3,
+  title_like: '',
 });
 
 //pagenation
 const totalCount = ref(0);
-const pageCount = computed(() => totalCount.value / params.value._limit);
+const pageCount = computed(() =>
+  Math.ceil(totalCount.value / params.value._limit),
+);
 const fetchPosts = async () => {
   try {
     const { data, headers } = await getPosts(params.value);
@@ -67,6 +109,7 @@ const fetchPosts = async () => {
     console.error(error);
   }
 };
-fetchPosts();
+watchEffect(fetchPosts);
+// fetchPosts();
 const goPage = id => router.push({ name: 'PostDetail', params: { id } });
 </script>
