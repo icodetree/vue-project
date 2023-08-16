@@ -10,13 +10,13 @@ export function getPostById(id) {
 }
 
 export function createPost(data) {
-  return posts.post('/', data);
+  return posts.post('', data);
 }
 
 export function updatePost(id, data) {
-  return posts.put(`/${id}`, data);
+  return posts.put(id, data);
 }
 
 export function deletePost(id) {
-  return posts.delete(`/${id}`);
+  return posts.delete(id);
 }
