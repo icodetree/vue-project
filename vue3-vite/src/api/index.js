@@ -5,4 +5,4 @@ function create(baseURL, options) {
   return instance;
 }
 
-export const posts = create('http://localhost:3002/posts/');
+export const posts = create(`${import.meta.env.VITE_APP_API_URL}posts/`);
