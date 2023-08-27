@@ -18,5 +18,5 @@ export function updatePost(id, data) {
 }
 
 export function deletePost(id) {
-  return posts.delete(id);
+  return posts.delete(`/${id}`);
 }
