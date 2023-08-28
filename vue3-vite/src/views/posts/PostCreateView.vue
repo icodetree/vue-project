@@ -15,7 +15,7 @@
         >
           취소
         </button>
-        <button class="btn btn-primary">수정</button>
+        <button class="btn btn-primary">등록</button>
       </template></PostForm
     >
   </div>
