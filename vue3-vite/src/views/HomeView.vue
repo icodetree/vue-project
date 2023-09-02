@@ -24,5 +24,5 @@ const goAboutPage = () => {
   router.push('/about');
 };
 
-const items = ref(['사과', '배', '딸기', '포도', '바나나']);
+const items = ref(['사과', '배', '딸기', '포도', '수박']);
 </script>
