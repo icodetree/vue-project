@@ -29,7 +29,7 @@
       @page="page => (params._page = page)"
     />
 
-    <AppModal />
+    <AppModal :show="show" title="게시글" />
 
     <template v-if="posts && posts.length > 0">
       <hr class="my-5" />
@@ -81,4 +81,10 @@ const fetchPosts = async () => {
 watchEffect(fetchPosts);
 // fetchPosts();
 const goPage = id => router.push({ name: 'PostDetail', params: { id } });
+
+// modal
+const show = ref(false);
+const openModal = () => {
+  show.value = true;
+};
 </script>
