@@ -15,6 +15,7 @@
           :content="item.content"
           :created-at="item.createdAt"
           @click="goPage(item.id)"
+          @modal="openModal(item)"
         ></PostItem>
       </template>
     </AppGrid>
@@ -29,7 +30,23 @@
       @page="page => (params._page = page)"
     />
 
-    <AppModal :show="show" title="게시글" />
+    <AppModal v-model="show" :show="show" title="게시글">
+      <template #default>
+        <div class="row g-3">
+          <div class="col-3 text-muted">제목</div>
+          <div class="col-9">{{ modalTitle }}</div>
+          <div class="col-3 text-muted">내용</div>
+          <div class="col-9">{{ modalContent }}</div>
+          <div class="col-3 text-muted">등록일</div>
+          <div class="col-9">{{ modalCreateAt }}</div>
+        </div>
+      </template>
+      <template #actions>
+        <button type="button" class="btn btn-secondary" @click="closeModal">
+          Close
+        </button>
+      </template>
+    </AppModal>
 
     <template v-if="posts && posts.length > 0">
       <hr class="my-5" />
@@ -84,7 +101,17 @@ const goPage = id => router.push({ name: 'PostDetail', params: { id } });
 
 // modal
 const show = ref(false);
-const openModal = () => {
+const modalTitle = ref('');
+const modalContent = ref('');
+const modalCreateAt = ref('');
+
+const openModal = ({ title, content, createAt }) => {
   show.value = true;
+  modalTitle.value = title;
+  modalContent.value = content;
+  modalCreateAt.value = createAt;
+};
+const closeModal = () => {
+  show.value = false;
 };
 </script>

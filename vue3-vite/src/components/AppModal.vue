@@ -1,5 +1,5 @@
 <template>
-  <div v-if="show">
+  <div v-if="modelValue">
     <div class="modal-backdrop fade show"></div>
 
     <!-- Modal -->
@@ -22,21 +22,15 @@
                 class="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
+                @click="$emit('update : modelValue', false)"
               ></button>
             </slot>
           </div>
           <div class="modal-body">
-            <slot name="actions"></slot>
+            <slot></slot>
           </div>
           <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <slot name="actions"></slot>
           </div>
         </div>
       </div>
@@ -46,7 +40,8 @@
 
 <script setup>
 defineProps({
-  show: Boolean,
+  modelValue: Boolean,
   title: String,
 });
+defineEmits(['close', 'update : modelValue']);
 </script>
