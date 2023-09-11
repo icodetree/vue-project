@@ -30,23 +30,14 @@
       @page="page => (params._page = page)"
     />
 
-    <AppModal v-model="show" :show="show" title="게시글">
-      <template #default>
-        <div class="row g-3">
-          <div class="col-3 text-muted">제목</div>
-          <div class="col-9">{{ modalTitle }}</div>
-          <div class="col-3 text-muted">내용</div>
-          <div class="col-9">{{ modalContent }}</div>
-          <div class="col-3 text-muted">등록일</div>
-          <div class="col-9">{{ modalCreateAt }}</div>
-        </div>
-      </template>
-      <template #actions>
-        <button type="button" class="btn btn-secondary" @click="closeModal">
-          Close
-        </button>
-      </template>
-    </AppModal>
+    <Teleport to="#modal">
+      <PostModal
+        v-model="show"
+        :title="modalTitle"
+        :content="modalContent"
+        :createAt="modalCreateAt"
+      />
+    </Teleport>
 
     <template v-if="posts && posts.length > 0">
       <hr class="my-5" />
@@ -68,7 +59,7 @@ import AppPagination from '@/components/AppPagination.vue';
 import AppGrid from '@/components/AppGrid.vue';
 
 import PostFilter from '@/components/posts/PostFilter.vue';
-import AppModal from '@/components/AppModal.vue';
+import PostModal from '@/components/posts/PostModal.vue';
 
 const router = useRouter();
 const posts = ref([]);
@@ -110,8 +101,5 @@ const openModal = ({ title, content, createAt }) => {
   modalTitle.value = title;
   modalContent.value = content;
   modalCreateAt.value = createAt;
-};
-const closeModal = () => {
-  show.value = false;
 };
 </script>
