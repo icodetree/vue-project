@@ -8,10 +8,12 @@ import router from './router';
 import funcPlugins from './plugins/func';
 import objPlugins from './plugins/obj';
 import person from './plugins/person';
+// import globalComponents from './plugins/global-components';
 
 const app = createApp(App);
 app
   .use(funcPlugins)
+  // .use(globalComponents)
   .use(person, { name: '홍길동' })
   .use(objPlugins, { name: 'bhy' })
   .use(router)
