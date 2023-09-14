@@ -8,12 +8,19 @@ import router from './router';
 import funcPlugins from './plugins/func';
 import objPlugins from './plugins/obj';
 import person from './plugins/person';
+import globalDirectives from './plugins/global-directives';
+import dayjs from './plugins/day';
+
 // import globalComponents from './plugins/global-components';
 
 const app = createApp(App);
+
+// app.directive('focus', focus);
 app
   .use(funcPlugins)
   // .use(globalComponents)
+  .use(globalDirectives)
+  .use(dayjs)
   .use(person, { name: '홍길동' })
   .use(objPlugins, { name: 'bhy' })
   .use(router)
