@@ -19,10 +19,16 @@
       "id": 12
     },
     {
-      "title": "wpahr1",
-      "content": "제목 2sssss",
+      "title": "wpahr1sdfasdasdfasdf",
+      "content": "게시글 수정",
       "createdAt": 1693231594875,
       "id": 13
+    },
+    {
+      "title": "금요일밤",
+      "content": "공부하기",
+      "createdAt": 1695394097012,
+      "id": 14
     }
   ]
 }
