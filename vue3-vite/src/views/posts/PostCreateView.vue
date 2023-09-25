@@ -40,6 +40,7 @@ const save = () => {
       createdAt: Date.now(),
     });
     // router.push({ name: 'PostList' });
+
     vSuccess('등록이 완료되었습니다.');
   } catch (error) {
     console.error(error);
