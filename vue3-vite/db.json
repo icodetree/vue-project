@@ -19,12 +19,6 @@
       "id": 12
     },
     {
-      "title": "wpahr1sdfasdasdfasdf",
-      "content": "게시글 수정",
-      "createdAt": 1693231594875,
-      "id": 13
-    },
-    {
       "title": "금요일밤",
       "content": "공부하기",
       "createdAt": 1695394097012,
@@ -41,6 +35,12 @@
       "content": "222222ssssadsfadsfadskl;jkl;",
       "createdAt": 1695823107598,
       "id": 16
+    },
+    {
+      "title": "게시글 수정adsfadsf",
+      "content": "게시글 수정게시글 수정게시글 수정게시글 수정asdfasdf",
+      "createdAt": 1696251855449,
+      "id": 17
     }
   ]
 }

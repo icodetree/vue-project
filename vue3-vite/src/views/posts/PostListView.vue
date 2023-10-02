@@ -53,21 +53,17 @@
   </div>
 </template>
 <script setup>
-import { ref, computed, watchEffect } from 'vue';
-import { useRouter } from 'vue-router';
-import { getPosts } from '@/api/posts';
-
 import PostItem from '@/components/posts/PostItem.vue';
 import PostDetailView from '@/views/posts/PostDetailView.vue';
 
 import PostFilter from '@/components/posts/PostFilter.vue';
 import PostModal from '@/components/posts/PostModal.vue';
 
-const router = useRouter();
-const posts = ref([]);
+import { ref, computed } from 'vue';
+import { useRouter } from 'vue-router';
+import { useAxios } from '@/hooks/useAxios';
 
-const error = ref(null);
-const loading = ref(false);
+const router = useRouter();
 
 const params = ref({
   _sort: 'createdAt',
@@ -77,25 +73,35 @@ const params = ref({
   title_like: '',
 });
 
-//pagenation
-const totalCount = ref(0);
+// composables
+const {
+  response,
+  data: posts,
+  error,
+  loading,
+} = useAxios('/posts', { params });
+
+//pagination
+const totalCount = computed(() => response.value.headers['x-total-count']);
 const pageCount = computed(() =>
   Math.ceil(totalCount.value / params.value._limit),
 );
-const fetchPosts = async () => {
-  try {
-    loading.value = true;
-    const { data, headers } = await getPosts(params.value);
-    posts.value = data;
-    totalCount.value = headers['x-total-count'];
-    console.log('headers: ', pageCount.value);
-  } catch (err) {
-    error.value = err;
-  } finally {
-    loading.value = false;
-  }
-};
-watchEffect(fetchPosts);
+
+// const fetchPosts = async () => {
+//   try {
+//     loading.value = true;
+//     const { data, headers } = await getPosts(params.value);
+//     posts.value = data;
+//     totalCount.value = headers['x-total-count'];
+//     console.log('headers: ', pageCount.value);
+//   } catch (err) {
+//     error.value = err;
+//   } finally {
+//     loading.value = false;
+//   }
+// };
+// watchEffect(fetchPosts);
+
 // fetchPosts();
 const goPage = id => router.push({ name: 'PostDetail', params: { id } });
 
