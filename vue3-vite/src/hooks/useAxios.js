@@ -28,7 +28,7 @@ export const useAxios = (url, config = {}, options = {}) => {
     data.value = null;
     error.value = null;
     loading.value = true;
-    axios(url, {
+    axios(unref(url), {
       ...defaultConfig,
       ...config,
       params: unref(params), // 랩핑을 풀어주기위함
@@ -54,7 +54,7 @@ export const useAxios = (url, config = {}, options = {}) => {
       });
   };
 
-  if (isRef(params)) {
+  if (isRef(params) || isRef(url)) {
     // 반응형로직을 관찰하는 함수
     watchEffect(execute);
   } else {

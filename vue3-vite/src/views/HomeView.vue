@@ -12,8 +12,8 @@
   </div>
 
   <hr class="my-4" />
-  <h2>{{ person.name }}</h2>
-  <button class="btn btn-primary" @click="person.say">click person</button>
+  <!-- <h2>{{ person.name }}</h2>
+  <button class="btn btn-primary" @click="person.say">click person</button> -->
 </template>
 
 <script>
@@ -25,7 +25,7 @@ export default {
 </script>
 
 <script setup>
-import { inject, ref } from 'vue';
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
@@ -36,6 +36,6 @@ const goAboutPage = () => {
 
 const items = ref(['사과', '배', '딸기', '포도', '수박']);
 
-const person = inject('person');
-console.log('person.name', person.name);
+// const person = inject('person');
+// console.log('person.name', person.name);
 </script>
