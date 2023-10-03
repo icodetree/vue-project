@@ -17,6 +17,11 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto">
             <li class="nav-item">
+              <RouterLink class="nav-link" active-class="active" to="/about"
+                >about</RouterLink
+              >
+            </li>
+            <li class="nav-item">
               <RouterLink class="nav-link" active-class="active" to="/youtube"
                 >youtube</RouterLink
               >

@@ -1,16 +1,10 @@
-import { ref } from 'vue';
-const alerts = ref([]);
+import { useAlertStore } from '@/stores/alert';
+import { storeToRefs } from 'pinia';
 
 // composabls function
 export function useAlert() {
-  const vAlert = (message, type = 'error') => {
-    alerts.value.push({ message, type });
-
-    setTimeout(() => {
-      alerts.value.shift();
-    }, 2000);
-  };
-  const vSuccess = message => vAlert(message, 'sucess');
+  const { alerts } = storeToRefs(useAlertStore());
+  const { vAlert, vSuccess } = useAlertStore();
   return {
     alerts,
     vAlert,

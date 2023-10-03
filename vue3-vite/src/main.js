@@ -3,6 +3,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'bootstrap/dist/js/bootstrap.js';
 
 import { createApp } from 'vue';
+import { createPinia } from 'pinia';
 import App from './App.vue';
 import router from './router';
 import funcPlugins from './plugins/func';
@@ -21,6 +22,7 @@ app
   // .use(globalComponents)
   .use(globalDirectives)
   .use(dayjs)
+  .use(createPinia())
   .use(person, { name: '홍길동' })
   .use(objPlugins, { name: 'bhy' })
   .use(router)

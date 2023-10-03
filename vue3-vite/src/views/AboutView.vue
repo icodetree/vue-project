@@ -1,64 +1,28 @@
 <template>
-  <monaco-editor v-model:value="code" :options="editorOptions"></monaco-editor>
+  <div>
+    <h2>About View</h2>
+    <p>{{ route.path }}</p>
+    <button class="btn btn-primary" @click="$router.push('/')">
+      Home으로 이동
+    </button>
+
+    <h2>Store</h2>
+    <p>counter : {{ counter }}</p>
+    <p>doubleCounter : {{ doubleCount }}</p>
+    <button @click="increment()">Click!</button>
+  </div>
 </template>
 
-<script>
-import { ref } from 'vue';
-import MonacoEditor from '@guolao/vue-monaco-editor';
+<script setup>
+import { useRoute } from 'vue-router';
+import { useCounterStore } from '@/stores/counter';
+import { storeToRefs } from 'pinia';
 
-export default {
-  components: {
-    MonacoEditor,
-  },
+const route = useRoute();
 
-  setup() {
-    const code = ref(
-      `export async function loadFonts () {
-  const webFontLoader = await import(/* webpackChunkName: "webfontloader" */'webfontloader')
+const store = useCounterStore();
 
-  webFontLoader.load({
-    google: {
-      families: ['Roboto:100,300,400,500,700,900&display=swap'],
-    },
-  })
-}';`,
-    );
-    const editorOptions = {
-      language: 'javascript',
-      theme: 'vs-dark',
-      automaticLayout: true,
-      formatOnType: true,
-      formatOnPaste: true,
-      readOnly: true,
-      tabFocusMode: true,
-      minimap: {
-        enabled: false, // 우측 미리보기 비활성화
-      },
-      lineHeight: 20,
-    };
-
-    return {
-      code,
-      editorOptions,
-    };
-  },
-};
+// storeToRefs : 반응성을 유지한채 구조분해 문법을 사용할수 있다.
+const { counter, doubleCount } = storeToRefs(store);
+const { increment } = store;
 </script>
-
-<style>
-.container {
-  height: 300px;
-}
-.container .monaco-editor {
-  padding: 10px 0;
-  border-radius: 5px;
-}
-.container .monaco-editor .overflow-guard {
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-}
-
-.monaco-editor.no-user-select .view-line {
-  /* font-size: 16px; */
-}
-</style>
