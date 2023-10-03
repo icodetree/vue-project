@@ -18,6 +18,8 @@ import NestedOneView from '@/views/nested/NestedOneView.vue';
 import NestedTwoView from '@/views/nested/NestedTwoView.vue';
 import NestedHomeView from '@/views/nested/NestedHomeView.vue';
 
+import MyPage from '@/views/MyPage.vue';
+
 const routes = [
   {
     path: '/',
@@ -91,10 +93,36 @@ const routes = [
       },
     ],
   },
+  {
+    path: '/my',
+    name: 'MyPage',
+    component: MyPage,
+
+    // 라우터 가드
+    beforeEnter: [removeQueryString],
+  },
 ];
+
+function removeQueryString(to) {
+  if (Object.keys(to.query).length > 0) {
+    return { path: to.path, query: {} };
+  }
+}
+
 const router = createRouter({
   history: createWebHistory('/'),
   routes,
+});
+
+// 네비게이션 가등 : 첫번째 매개변수(to)는 이동할페이지,
+// 두번째 매개변수(from)는 이동하기 전의 페이지,
+router.beforeEach((to, from) => {
+  // console.log('to: ', to);
+  // console.log('from: ', from);
+  // return 또는 다른페이지로 리다이렉션할 수 있다.
+  // if (to.name === 'MyPage') {
+  //   return { name: 'Home' };
+  // }
 });
 
 export default router;

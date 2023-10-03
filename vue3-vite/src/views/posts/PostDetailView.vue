@@ -59,7 +59,7 @@
 
 <script setup>
 import { toRef, toRefs } from 'vue';
-import { useRouter } from 'vue-router';
+import { onBeforeRouteLeave, onBeforeRouteUpdate, useRouter } from 'vue-router';
 // import { deletePost } from '@/api/posts';
 import { useAlert } from '@/composables/alert';
 import { useAxios } from '@/hooks/useAxios';
@@ -167,4 +167,23 @@ const remove = async () => {
 const goListPage = () => router.push({ name: 'PostList' });
 const goEditPage = () =>
   router.push({ name: 'PostEdit', params: { id: props.id } });
+
+// 컴포넌트 내 가드 : 라우트 경로가 변경되었을때 실행
+onBeforeRouteUpdate(() => {
+  console.log('onBeforeRouteUpdate');
+});
+
+// 컴포넌트 내 가드 :  현재 페이지를 벗어날때
+onBeforeRouteLeave(() => {
+  console.log('onBeforeRouteLeave');
+});
+</script>
+
+<script>
+export default {
+  // 컴포넌트 내 가드 :  페이지 진입시
+  beforeRouteEnter() {
+    console.log('beforeRouteEnter');
+  },
+};
 </script>
